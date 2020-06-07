@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/ie8.css" th:href="@{/css/ie8.css}" rel="stylesheet"/>
+    <link href="../static/css/ie9.css" th:href="@{/css/ie9.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <a class="navbar-brand" th:href="@{/home}"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"
+                                                    style="width: 100px" alt="User Icon"/> online store </a>
+    <div class="card">
+        <div class="card-body">
+            <p th:if="${param.error}">
+                Unable to add news. Please check data spelling.
+            </p>
+            <form th:action="@{/articles}" method="post">
+                <!--   <div class="form-row">
+                       <label for="date">Date</label>
+                       <input type="date" id="date" name="date" placeholder="yyyy-mm-dd">
+                   </div>-->
+                <div class="form-row">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" placeholder="title">
+
+                </div>
+                <div class="form-row">
+                    <label for="content">Content</label>
+                    <textarea rows="10" id="content" name="content" placeholder="new article"></textarea>
+                </div>
+                <div class="form-row">
+                    <input type="submit" value="Create article">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

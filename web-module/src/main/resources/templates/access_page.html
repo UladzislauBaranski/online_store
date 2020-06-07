@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Access page</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/access_page.css" th:href="@{/css/access_page.css}">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+            <img src="../static/images/logo.png" th:src="@{/images/logo.png}" id="icon" alt="User Icon"/>
+            <h1>online store</h1>
+        </div>
+        <p th:if="${param.error}">
+            Unable to log in. Please check login and password spelling.
+        </p>
+        <form method="post" th:action="@{/login}">
+            <input id="username" class="fadeIn second" name="username" type="text" placeholder="username">
+            <input id="password" class="fadeIn third" name="password" type="password" placeholder="password">
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+    </div>
+</div>
+</body>
+</html>
