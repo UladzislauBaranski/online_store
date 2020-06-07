@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Item page</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+
+    <link href="../static/css/ie8.css" th:href="@{/css/ie8.css}" rel="stylesheet"/>
+    <link href="../static/css/ie9.css" th:href="@{/css/ie9.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <a class="navbar-brand" th:href="@{/home}"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"
+                                                    style="width: 100px" alt="User Icon"/> online store </a>
+    <div th:if="${item eq null}">
+        <h1 class="display-4 font-italic text-center"><strong>THIS ITEM DOESNT EXIST</strong></h1>
+        <div class="text-center">
+            <a href="#" th:href="@{/home}" class="btn btn-primary" role="button">Back to start page</a>
+        </div>
+    </div>
+
+    <div th:unless="${item eq null}">
+        <h2 class="text-center">Item</h2>
+        <article class="post">
+            <header>
+                <div class="title" th:if="${item.title!=null}">
+                    <h2><a th:text="${item.title}">Title</a></h2><br>
+                    <p th:text="${item.uniqueNumber}">Unique number</p>
+                </div>
+                <div class="meta">
+                    <h5 th:text="${item.price}+'$'"><a>Price, $</a></h5>
+                </div>
+            </header>
+            <p th:text="${item.summary}">Summary</p>
+        </article>
+    </div>
+</body>
+</html>

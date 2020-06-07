@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add shop</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link href="../static/css/ie8.css" th:href="@{/css/ie8.css}" rel="stylesheet"/>
+    <link href="../static/css/ie9.css" th:href="@{/css/ie9.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <a class="navbar-brand" th:href="@{/home}"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"
+                                                    style="width: 100px" alt="User Icon"/> online store </a>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <h2 class="text-center">Refactor user</h2>
+            <form method="post" th:action="@{/orders/refactor/status}">
+                <div class="form-group">
+
+                    <p>Please select user's role:</p>
+                    <input type="radio" id="new" name="status" value="NEW">
+                    <label for="new">NEW</label><br>
+
+                    <input type="radio" id="in_progress" name="status" value="IN_PROGRESS">
+                    <label for="in_progress">IN PROGRESS</label><br>
+
+                    <input type="radio" id="delivered" name="status" value="DELIVERED">
+                    <label for="delivered">DELIVERED</label><br>
+
+                    <input type="radio" id="rejected" name="status" value="REJECTED">
+
+                    <label for="rejected">REJECTED</label><br>
+                </div>
+
+                <button type="submit" name="id" th:value="${id}">refactor</button>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+</body>
+</html>>
