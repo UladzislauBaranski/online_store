@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link href="../static/css/checkbox.css" th:href="@{/css/checkbox.css}" rel="stylesheet"/>
+    <link href="../static/css/ie8.css" th:href="@{/css/ie8.css}" rel="stylesheet"/>
+    <link href="../static/css/ie9.css" th:href="@{/css/ie9.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <a class="navbar-brand" th:href="@{/home}"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"
+                                                    style="width: 100px" alt="User Icon"/> online store </a>
+    <div class="row">
+        <div class="col">
+            <div>
+                <p th:if="${param.error}">
+                    Unable to log in. Please check login and password spelling.
+                </p>
+            </div>
+            <form method="post">
+                <table class="table-wrapper">
+                    <thead>
+                    <h2 class="text-center">Users</h2>
+                    <tr>
+                        <td>Full name</td>
+                        <td>Email</td>
+                        <td>Role</td>
+                        <td>Role</td>
+                    </tr>
+                    </thead>
+
+                    <tbody th:each="user:${users}">
+                    <tr>
+                        <td th:text="${user.name+' '+user.surname+' '+user.patronymic}">Full name</td>
+                        <td th:text="${user.username}">username</td>
+                        <td th:text="${user.role}">role</td>
+                        <td th:text="${user.exist}">role</td>
+                        <td>
+                            <a th:href="@{/users/{id}(id=${user.id})}"
+                               class="button" role="button">User details</a>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" th:id="${user.id}" name="ids"
+                                       th:value="${user.id}">
+                                <label class="form-check-label" th:for="${user.id}">Check for delete</label>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button id="delete" class="button" formaction="/users/delete">Delete</button>
+                <button id="refactorPassword" class="button" formaction="/users/refactor/password">
+                    Refactor password
+                </button>
+                <button id="refactorRole" class="button" formaction="/refactor">Refactor
+                    role
+                </button>
+                <a th:href="@{/users/add}">add user</a><br>
+            </form>
+
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/users?page=1}" th:value="1">1</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/users?page=2}" th:value="2">2</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/users?page=3}" th:value="3">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

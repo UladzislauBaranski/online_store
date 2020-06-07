@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>items</title>
+    <link href="../static/css/checkbox.css" th:href="@{/css/checkbox.css}" rel="stylesheet"/>
+    <link href="../static/css/ie8.css" th:href="@{/css/ie8.css}" rel="stylesheet"/>
+    <link href="../static/css/ie9.css" th:href="@{/css/ie9.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <a class="navbar-brand" th:href="@{/home}"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"
+                                                    style="width: 100px" alt="User Icon"/> online store </a>
+
+    <div class="row">
+        <div class="col">
+            <table class="table-wrapper">
+                <thead>
+                <h1 class="text-center">Items page</h1>
+                <tr>
+                    <td>id</td>
+                    <td>Title</td>
+                    <td>Unique number</td>
+                    <td>Price</td>
+                    <td>More details</td>
+                </tr>
+                </thead>
+                <tbody th:each="item:${items}">
+                <tr>
+                    <td th:text="${item.id}">review</td>
+                    <td th:text="${item.title}">review</td>
+                    <td th:text="${item.uniqueNumber}">date</td>
+                    <td th:text="${item.price}">name and surname</td>
+                    <td>
+                        <a th:href="@{/items/{id}(id=${item.id})}" class="button"
+                           role="button">More details</a>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="form-check-input" th:id="${item.id}" name="id"
+                               th:value="${item.id}">
+                        <label class="form-check-label" th:for="${item.id}">Check for delete</label>
+                    </td>
+
+                    <td>
+                        <form method="post" th:action="@{/items}">
+
+
+                            <label for="title"></label><input id="title" name="number" placeholder="Enter number">
+
+                            <button style="background-color: #f6f6f6; color: palevioletred" class="button"
+                                    name="id" th:value="${item.id}">order
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div sec:authorize="hasRole('SALE_USER')">
+                <button id="delete" class="button" formaction="/items/delete">Delete</button>
+            </div>
+            <div sec:authorize="hasRole('CUSTOMER_USER')">
+                <button id="order" class="submit" formaction="/items">Order</button>
+            </div>
+
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/items?page=1}" th:value="1">1</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/items?page=2}" th:value="2">2</a></li>
+                <li class="page-item"><a class="page-link" th:href="@{/items?page=3}" th:value="3">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
